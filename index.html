@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthCheck Pro - Advanced Symptom Checker & Health Tool</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="styles/animations.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <div class="logo-icon">
+                    <i class="fas fa-heartbeat"></i>
+                    <i class="fas fa-stethoscope"></i>
+                </div>
+                <span class="logo-text">HealthCheck Pro</span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#symptoms" class="nav-link">Symptom Checker</a>
+                <a href="#bmi" class="nav-link">BMI Tracker</a>
+                <a href="#diet" class="nav-link">Diet Guide</a>
+                <a href="#doctors" class="nav-link">Doctors</a>
+                <a href="#tracker" class="nav-link">Health Log</a>
+                <a href="#chatbot" class="nav-link">Dr. GPT</a>
+            </div>
+            <div class="nav-controls">
+                <button class="theme-toggle" id="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="font-size-toggle" id="font-size-toggle">
+                    <i class="fas fa-text-height"></i>
+                </button>
+                <button class="nav-toggle" id="nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-background">
+            <div class="hero-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        Your Personal <span class="gradient-text">Health Assistant</span>
+                    </h1>
+                    <p class="hero-description">
+                        Advanced symptom checker, BMI tracking, personalized diet plans, and comprehensive health monitoring - all in one place.
+                    </p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" onclick="scrollToSection('symptoms')">
+                            <i class="fas fa-search-plus"></i>
+                            Check Symptoms
+                        </button>
+                        <button class="btn btn-secondary" onclick="scrollToSection('bmi')">
+                            <i class="fas fa-calculator"></i>
+                            Calculate BMI
+                        </button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="health-illustration">
+                        <div class="floating-card card-1">
+                            <i class="fas fa-heartbeat"></i>
+                            <span>Heart Rate</span>
+                        </div>
+                        <div class="floating-card card-2">
+                            <i class="fas fa-weight"></i>
+                            <span>BMI Tracker</span>
+                        </div>
+                        <div class="floating-card card-3">
+                            <i class="fas fa-pills"></i>
+                            <span>Symptom Check</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Overview -->
+    <section class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Comprehensive Health Tools</h2>
+                <p class="section-description">Everything you need to monitor and improve your health</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                    <h3>Symptom Checker</h3>
+                    <p>AI-powered symptom analysis with disease predictions and specialist recommendations</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3>BMI Tracker</h3>
+                    <p>Track your BMI with personalized diet suggestions and progress monitoring</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Diet Plans</h3>
+                    <p>Customized nutrition plans based on your health conditions and goals</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h3>Doctor Directory</h3>
+                    <p>Find qualified specialists and healthcare providers near you</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Symptom Checker Section -->
+    <section id="symptoms" class="symptom-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Symptom Checker</h2>
+                <p class="section-description">Select your symptoms to get possible diagnoses and recommendations</p>
+            </div>
+            
+            <div class="symptom-checker-card">
+                <div class="language-selector">
+                    <label for="language-select">Language:</label>
+                    <select id="language-select">
+                        <option value="en">English</option>
+                        <option value="hi">हिंदी (Hindi)</option>
+                        <option value="or">ଓଡ଼ିଆ (Odia)</option>
+                    </select>
+                </div>
+
+                <div class="symptom-input-section">
+                    <div class="input-row">
+                        <div class="search-box">
+                            <input type="text" id="symptom-search" placeholder="Search symptoms...">
+                            <button class="voice-input-btn" id="voice-input">
+                                <i class="fas fa-microphone"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="symptom-categories">
+                        <button class="category-btn active" data-category="all">All</button>
+                        <button class="category-btn" data-category="general">General</button>
+                        <button class="category-btn" data-category="respiratory">Respiratory</button>
+                        <button class="category-btn" data-category="digestive">Digestive</button>
+                        <button class="category-btn" data-category="neurological">Neurological</button>
+                        <button class="category-btn" data-category="skin">Skin</button>
+                    </div>
+
+                    <div class="symptoms-grid" id="symptoms-grid">
+                        <!-- Symptoms will be populated by JavaScript -->
+                    </div>
+
+                    <div class="selected-symptoms" id="selected-symptoms">
+                        <h4>Selected Symptoms:</h4>
+                        <div class="symptom-tags" id="symptom-tags"></div>
+                    </div>
+
+                    <div class="severity-selector">
+                        <label>Severity Level:</label>
+                        <div class="severity-options">
+                            <label class="severity-option">
+                                <input type="radio" name="severity" value="mild" checked>
+                                <span class="severity-mild">Mild</span>
+                            </label>
+                            <label class="severity-option">
+                                <input type="radio" name="severity" value="moderate">
+                                <span class="severity-moderate">Moderate</span>
+                            </label>
+                            <label class="severity-option">
+                                <input type="radio" name="severity" value="severe">
+                                <span class="severity-severe">Severe</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary analyze-btn" id="analyze-symptoms">
+                        <i class="fas fa-search"></i>
+                        Analyze Symptoms
+                    </button>
+                </div>
+
+                <div class="results-section" id="results-section" style="display: none;">
+                    <div class="results-content" id="results-content">
+                        <!-- Results will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="disclaimer">
+                    <div class="disclaimer-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="disclaimer-text">
+                        <strong>Medical Disclaimer:</strong> This tool is for informational purposes only and should not replace professional medical advice. Always consult with a qualified healthcare provider for proper diagnosis and treatment.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BMI Section -->
+    <section id="bmi" class="bmi-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">BMI Calculator & Tracker</h2>
+                <p class="section-description">Monitor your Body Mass Index and track your health journey</p>
+            </div>
+
+            <div class="bmi-calculator-card">
+                <div class="bmi-input-section">
+                    <div class="input-group">
+                        <label for="height">Height</label>
+                        <div class="input-with-toggle">
+                            <input type="number" id="height" placeholder="Enter height">
+                            <div class="unit-toggle">
+                                <button class="unit-btn active" data-unit="cm">cm</button>
+                                <button class="unit-btn" data-unit="ft">ft</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="weight">Weight</label>
+                        <div class="input-with-toggle">
+                            <input type="number" id="weight" placeholder="Enter weight">
+                            <div class="unit-toggle">
+                                <button class="unit-btn active" data-unit="kg">kg</button>
+                                <button class="unit-btn" data-unit="lb">lb</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" id="calculate-bmi">
+                        <i class="fas fa-calculator"></i>
+                        Calculate BMI
+                    </button>
+                </div>
+
+                <div class="bmi-result" id="bmi-result" style="display: none;">
+                    <div class="bmi-display">
+                        <div class="bmi-value" id="bmi-value">0</div>
+                        <div class="bmi-category" id="bmi-category">Normal</div>
+                    </div>
+                    <div class="bmi-chart">
+                        <div class="bmi-scale">
+                            <div class="scale-section underweight">
+                                <span>Underweight</span>
+                                <span>&lt;18.5</span>
+                            </div>
+                            <div class="scale-section normal">
+                                <span>Normal</span>
+                                <span>18.5-24.9</span>
+                            </div>
+                            <div class="scale-section overweight">
+                                <span>Overweight</span>
+                                <span>25-29.9</span>
+                            </div>
+                            <div class="scale-section obese">
+                                <span>Obese</span>
+                                <span>≥30</span>
+                            </div>
+                        </div>
+                        <div class="bmi-indicator" id="bmi-indicator"></div>
+                    </div>
+                </div>
+
+                <div class="weight-log-section">
+                    <h3>Weight Tracking</h3>
+                    <div class="weight-log-form">
+                        <input type="date" id="log-date">
+                        <input type="number" id="log-weight" placeholder="Weight">
+                        <button class="btn btn-secondary" id="log-weight-btn">Log Weight</button>
+                    </div>
+                    <div class="weight-chart-container">
+                        <canvas id="weight-chart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Diet Guide Section -->
+    <section id="diet" class="diet-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Personalized Diet Guide</h2>
+                <p class="section-description">Get customized nutrition plans based on your health profile</p>
+            </div>
+
+            <div class="diet-filters">
+                <button class="filter-btn active" data-filter="all">All Plans</button>
+                <button class="filter-btn" data-filter="weight-loss">Weight Loss</button>
+                <button class="filter-btn" data-filter="weight-gain">Weight Gain</button>
+                <button class="filter-btn" data-filter="diabetes">Diabetes</button>
+                <button class="filter-btn" data-filter="heart">Heart Health</button>
+                <button class="filter-btn" data-filter="hypertension">Hypertension</button>
+            </div>
+
+            <div class="diet-plans-grid" id="diet-plans-grid">
+                <!-- Diet plans will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Doctors Section -->
+    <section id="doctors" class="doctors-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Find Healthcare Providers</h2>
+                <p class="section-description">Connect with qualified doctors and specialists</p>
+            </div>
+
+            <div class="doctor-search">
+                <div class="search-filters">
+                    <input type="text" id="doctor-search" placeholder="Search doctors, specialties, or locations...">
+                    <select id="specialty-filter">
+                        <option value="">All Specialties</option>
+                        <option value="cardiology">Cardiology</option>
+                        <option value="dermatology">Dermatology</option>
+                        <option value="neurology">Neurology</option>
+                        <option value="orthopedic">Orthopedic</option>
+                        <option value="pediatric">Pediatric</option>
+                        <option value="psychiatry">Psychiatry</option>
+                    </select>
+                    <select id="location-filter">
+                        <option value="">All Locations</option>
+                        <option value="nearby">Near Me</option>
+                        <option value="city">In City</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="doctors-grid" id="doctors-grid">
+                <!-- Doctors will be populated by JavaScript -->
+            </div>
+
+            <div class="disease-library">
+                <h3>Disease Information Library</h3>
+                <div class="disease-search">
+                    <input type="text" id="disease-search" placeholder="Search diseases...">
+                </div>
+                <div class="diseases-grid" id="diseases-grid">
+                    <!-- Diseases will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Health Tracker Section -->
+    <section id="tracker" class="tracker-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Health Journey Tracker</h2>
+                <p class="section-description">Monitor your daily health activities and progress</p>
+            </div>
+
+            <div class="tracker-dashboard">
+                <div class="tracker-cards">
+                    <div class="tracker-card">
+                        <div class="card-header">
+                            <h3>Daily Log</h3>
+                            <i class="fas fa-calendar-day"></i>
+                        </div>
+                        <div class="daily-log-form">
+                            <div class="log-item">
+                                <label>Water Intake (glasses)</label>
+                                <input type="number" id="water-intake" min="0" max="20">
+                            </div>
+                            <div class="log-item">
+                                <label>Exercise (minutes)</label>
+                                <input type="number" id="exercise-time" min="0">
+                            </div>
+                            <div class="log-item">
+                                <label>Sleep (hours)</label>
+                                <input type="number" id="sleep-hours" min="0" max="24" step="0.5">
+                            </div>
+                            <div class="log-item">
+                                <label>Mood</label>
+                                <select id="mood-select">
+                                    <option value="excellent">😄 Excellent</option>
+                                    <option value="good">😊 Good</option>
+                                    <option value="fair">😐 Fair</option>
+                                    <option value="poor">😞 Poor</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-primary" id="save-daily-log">Save Today's Log</button>
+                        </div>
+                    </div>
+
+                    <div class="tracker-card">
+                        <div class="card-header">
+                            <h3>Progress Overview</h3>
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="progress-charts">
+                            <canvas id="progress-chart" width="300" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="health-timeline" id="health-timeline">
+                    <h3>Health Timeline</h3>
+                    <div class="timeline-container">
+                        <!-- Timeline items will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chatbot Section -->
+    <section id="chatbot" class="chatbot-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Dr. GPT - AI Health Assistant</h2>
+                <p class="section-description">Get instant health guidance from our AI assistant</p>
+            </div>
+
+            <div class="chatbot-container">
+                <div class="chat-window" id="chat-window">
+                    <div class="chat-header">
+                        <div class="chat-avatar">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="chat-info">
+                            <h4>Dr. GPT</h4>
+                            <span class="status online">Online</span>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-messages" id="chat-messages">
+                        <div class="message bot-message">
+                            <div class="message-avatar">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="message-content">
+                                <p>Hello! I'm Dr. GPT, your AI health assistant. How can I help you today?</p>
+                                <div class="quick-actions">
+                                    <button class="quick-btn" data-action="symptoms">Describe Symptoms</button>
+                                    <button class="quick-btn" data-action="diet">Diet Advice</button>
+                                    <button class="quick-btn" data-action="exercise">Exercise Tips</button>
+                                    <button class="quick-btn" data-action="emergency">Emergency Info</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-input-section">
+                        <div class="chat-input-container">
+                            <input type="text" id="chat-input" placeholder="Type your health question...">
+                            <button class="chat-voice-btn" id="chat-voice">
+                                <i class="fas fa-microphone"></i>
+                            </button>
+                            <button class="chat-send-btn" id="chat-send">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-heartbeat"></i>
+                            <i class="fas fa-stethoscope"></i>
+                        </div>
+                        <span class="logo-text">HealthCheck Pro</span>
+                    </div>
+                    <p>Your comprehensive health companion for better living and wellness monitoring.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#symptoms">Symptom Checker</a></li>
+                        <li><a href="#bmi">BMI Calculator</a></li>
+                        <li><a href="#diet">Diet Plans</a></li>
+                        <li><a href="#doctors">Find Doctors</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#admin">Admin Panel</a></li>
+                        <li><a href="#help">Help Center</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                        <li><a href="#terms">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                        <p><i class="fas fa-envelope"></i> support@healthcheckpro.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Health St, Medical City</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 HealthCheck Pro. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div class="modal" id="admin-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Admin Panel</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="admin-login">
+                    <div class="login-form">
+                        <input type="text" placeholder="Admin Username" id="admin-username">
+                        <input type="password" placeholder="Admin Password" id="admin-password">
+                        <button class="btn btn-primary" id="admin-login-btn">Login</button>
+                    </div>
+                </div>
+                <div class="admin-dashboard" id="admin-dashboard" style="display: none;">
+                    <div class="admin-tabs">
+                        <button class="tab-btn active" data-tab="diseases">Manage Diseases</button>
+                        <button class="tab-btn" data-tab="diet">Manage Diet Plans</button>
+                        <button class="tab-btn" data-tab="doctors">Manage Doctors</button>
+                    </div>
+                    <div class="admin-content" id="admin-content">
+                        <!-- Admin content will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div class="loading-spinner" id="loading-spinner">
+        <div class="spinner"></div>
+        <p>Analyzing your symptoms...</p>
+    </div>
+
+    <!-- Notification Toast -->
+    <div class="toast" id="toast">
+        <div class="toast-content">
+            <i class="toast-icon"></i>
+            <span class="toast-text"></span>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/data/symptoms.js"></script>
+    <script src="js/data/diseases.js"></script>
+    <script src="js/data/doctors.js"></script>
+    <script src="js/data/dietPlans.js"></script>
+    <script src="js/utils/storage.js"></script>
+    <script src="js/utils/charts.js"></script>
+    <script src="js/components/navigation.js"></script>
+    <script src="js/components/symptoms.js"></script>
+    <script src="js/components/bmi.js"></script>
+    <script src="js/components/diet.js"></script>
+    <script src="js/components/doctors.js"></script>
+    <script src="js/components/tracker.js"></script>
+    <script src="js/components/chatbot.js"></script>
+    <script src="js/components/admin.js"></script>
+    <script src="js/main.js"></script>
